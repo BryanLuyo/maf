@@ -20,7 +20,7 @@ public class SucursalService
     public async Task<IEnumerable<SucursalDto>> GetByConcesionarioIdAsync(int concesionarioId)
     {
         var items = await _repository.GetByConcesionarioIdAsync(concesionarioId);
-        return items.Select(s => new SucursalDto(s.Id, s.IdConcesionario, s.NomComercial));
+        return items.Select(SucursalDto.FromEntity);
     }
 
     // TODO: Crea una nueva sucursal
@@ -29,7 +29,9 @@ public class SucursalService
         var entity = new Sucursal
         {
             IdConcesionario = dto.IdConcesionario,
-            NomComercial = dto.NomComercial
+            DescNombre = dto.DescNombre,
+            DescDireccion = dto.DescDireccion,
+            DescCod = dto.DescCod,
         };
         await _repository.AddAsync(entity);
         await _repository.SaveChangesAsync();

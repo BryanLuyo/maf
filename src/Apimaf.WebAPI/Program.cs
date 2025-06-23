@@ -4,11 +4,16 @@ using Apimaf.Infrastructure.Data;
 using Apimaf.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Apimaf.WebAPI;
+using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
+Env.Load();
+
 
 // TODO: Configurar cadena de conexión (valor por defecto en appsettings)
-var connectionString = builder.Configuration.GetConnectionString("Default") ?? string.Empty;
+var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING") ??
+                       builder.Configuration.GetConnectionString("Default") ??
+                       string.Empty;
 
 // TODO: Registrar DbContext y servicios
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

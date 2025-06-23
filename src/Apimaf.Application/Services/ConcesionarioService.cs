@@ -20,7 +20,7 @@ public class ConcesionarioService
     public async Task<IEnumerable<ConcesionarioDto>> GetAllAsync()
     {
         var items = await _repository.GetAllAsync();
-        return items.Select(c => new ConcesionarioDto(c.Id, c.Cod, c.NomComercial, c.Nombre));
+        return items.Select(ConcesionarioDto.FromEntity);
     }
 
     // TODO: Crea un nuevo concesionario
@@ -28,9 +28,7 @@ public class ConcesionarioService
     {
         var entity = new Concesionario
         {
-            Cod = dto.Cod,
-            NomComercial = dto.NomComercial,
-            Nombre = dto.Nombre
+            NomComercial = dto.NomComercial
         };
         await _repository.AddAsync(entity);
         await _repository.SaveChangesAsync();

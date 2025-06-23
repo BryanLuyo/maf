@@ -20,7 +20,7 @@ public class MarcaService
     public async Task<IEnumerable<MarcaDto>> GetAllAsync()
     {
         var items = await _repository.GetAllAsync();
-        return items.Select(c => new MarcaDto(c.Id, c.NomComercial, c.Nombre));
+        return items.Select(MarcaDto.FromEntity);
     }
 
     // TODO: Crea una nueva marca
@@ -28,8 +28,7 @@ public class MarcaService
     {
         var entity = new Marca
         {
-            NomComercial = dto.NomComercial,
-            Nombre = dto.Nombre
+            NomComercial = dto.NomComercial
         };
         await _repository.AddAsync(entity);
         await _repository.SaveChangesAsync();

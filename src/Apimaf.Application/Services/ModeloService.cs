@@ -20,7 +20,7 @@ public class ModeloService
     public async Task<IEnumerable<ModeloDto>> GetByMarcaIdAsync(int marcaId)
     {
         var items = await _repository.GetByMarcaIdAsync(marcaId);
-        return items.Select(s => new ModeloDto(s.Id, s.IdMarca, s.NomComercial));
+        return items.Select(ModeloDto.FromEntity);
     }
 
     // TODO: Crea una nueva sucursal
@@ -29,7 +29,7 @@ public class ModeloService
         var entity = new Modelo
         {
             IdMarca = dto.IdMarca,
-            NomComercial = dto.NomComercial
+            Descripcion = dto.Descripcion
         };
         await _repository.AddAsync(entity);
         await _repository.SaveChangesAsync();

@@ -7,10 +7,12 @@ public class Sucursal
 {
     public int Id { get; set; }
     public int IdConcesionario { get; set; }
-    public string NomComercial { get; set; } = string.Empty;
+    public string? DescNombre { get; set; } = string.Empty;
+    public string? DescCod { get; set; } = string.Empty;
+    public string? DescDireccion { get; set; } = string.Empty;
     public int FlgEstado { get; set; } = 1;
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime? CreatedAt { get; set; }
+    public DateTime? UpdatedAt { get; set; }
 
     // TODO: Propiedad de navegación al Concesionario
     public Concesionario? Concesionario { get; set; }

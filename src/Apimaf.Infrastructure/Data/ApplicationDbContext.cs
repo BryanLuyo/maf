@@ -36,10 +36,7 @@ public class ApplicationDbContext : DbContext
 
             // Mapeo explícito de columnas
             entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Cod).HasColumnName("cod");
             entity.Property(e => e.NomComercial).HasColumnName("nom_comercial");
-            entity.Property(e => e.Nombre).HasColumnName("nombre");
-            entity.Property(e => e.Descripcion).HasColumnName("descripcion");
             entity.Property(e => e.FlgEstado).HasColumnName("flg_estado");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
@@ -52,7 +49,9 @@ public class ApplicationDbContext : DbContext
             // Mapeo explícito de columnas
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.IdConcesionario).HasColumnName("id_concesionario");
-            entity.Property(e => e.NomComercial).HasColumnName("desc_nombre");
+            entity.Property(e => e.DescNombre).HasColumnName("desc_nombre");
+            entity.Property(e => e.DescDireccion).HasColumnName("desc_direccion");
+            entity.Property(e => e.DescCod).HasColumnName("desc_cod");
             entity.Property(e => e.FlgEstado).HasColumnName("flg_estado");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
@@ -68,8 +67,6 @@ public class ApplicationDbContext : DbContext
             // Mapeo explícito de columnas
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.NomComercial).HasColumnName("nom_comercial");
-            entity.Property(e => e.Nombre).HasColumnName("nombre");
-            entity.Property(e => e.Descripcion).HasColumnName("descripcion");
             entity.Property(e => e.FlgEstado).HasColumnName("flg_estado");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
@@ -82,7 +79,6 @@ public class ApplicationDbContext : DbContext
             // Mapeo explícito de columnas
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.IdMarca).HasColumnName("id_marca");
-            entity.Property(e => e.NomComercial).HasColumnName("nombre");
             entity.Property(e => e.Descripcion).HasColumnName("descripcion");
             entity.Property(e => e.FlgEstado).HasColumnName("flg_estado");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");

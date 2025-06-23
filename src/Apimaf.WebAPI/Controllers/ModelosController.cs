@@ -1,7 +1,8 @@
 using Apimaf.Application.DTOs;
 using Apimaf.Application.Services;
-using Apimaf.Domain.Entities;
+using Apimaf.Application.Utils;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace Apimaf.WebAPI.Controllers;
 
@@ -21,9 +22,10 @@ public class ModelosController : ControllerBase
 
     // TODO: Devuelve los modelos de una marca
     [HttpGet]
-    public async Task<ActionResult<ApiResponse<IEnumerable<ModeloDto>>>> Get(int marcaId)
+    public async Task<ActionResult<ApiResponse<IEnumerable<ModeloDto>>>> Get(string  marcaId)
     {
-        var data = await _service.GetByMarcaIdAsync(marcaId);
+        var decoded = UuidConverter.Decode(marcaId);
+        var data = await _service.GetByMarcaIdAsync(decoded);
         return Ok(new ApiResponse<IEnumerable<ModeloDto>>(200, "successful operation", data));
     }
 }
